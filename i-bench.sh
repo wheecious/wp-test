@@ -18,7 +18,7 @@ while (( USED_INODES < THRESHOLD )); do
     touch "$TARGET_DIR/file_$i" 2>/dev/null || break
     ((i++))
 
-    # Renew info every 1k files
+    # Renew info every 10k files
     if (( i % 10000 == 0 )); then
         USED_INODES=$(df -i "$TARGET_DIR" | awk 'NR==2 {print $3}')
         echo "Files created: $i, inodes used/total: $USED_INODES/$TOTAL_INODES"
