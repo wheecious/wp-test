@@ -51,14 +51,28 @@
         path: /var/log/php8.1-fpm.log
         mode: "0640"
 
+    - name: copy default nginx
+      copy:
+        src: ./default
+        dest: /etc/nginx/sites-available/default
+        owner: root
+        group: root
+        mode: "0777"
+
     - name: add zabbix to the root group
       user:
         name: zabbix
-        groups: root
+        groups: "root, adm"
         append: yes
 
     - name: restart agent2
       systemd:
         name: zabbix-agent2
+        state: restarted
+        enabled: yes
+
+    - name: restart nginx
+      systemd:
+        name: nginx
         state: restarted
         enabled: yes
