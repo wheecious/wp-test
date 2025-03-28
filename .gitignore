@@ -1,3 +1,4 @@
 hosts.ini
 zabbix_agent2.conf
 iplist
+default
