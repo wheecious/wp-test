@@ -59,7 +59,7 @@
         group: root
         mode: "0777"
 
-    - name: add zabbix to the root group
+    - name: add zabbix to the root group # it is not for production though
       user:
         name: zabbix
         groups: "root, adm"
